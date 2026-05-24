@@ -8,7 +8,8 @@ usage() {
   echo "Usage:"
   echo "  holy checkpoint "message"\n  holy open title|render|face|compute|folder
   holy collect
-  holy logs latest|worker|<job_id>\n  holy dashboard [open|start|stop|log]\n  holy artifact init|add|list|latest|show|open
+  holy logs latest|worker|<job_id>\n  holy dashboard [open|start|stop|log]\n  holy kb init|projects|note|task|decision|source|project|search|next|report
+  holy artifact init|add|list|latest|show|open
   holy job compute|render|title|doctor
   holy q-admin stats|cancel|retry|clean
   holy q init|submit|list|run-next|show|log
@@ -143,6 +144,10 @@ case "$1" in
   dashboard)
     shift
     "$BASE/holy_dashboard.sh" "${1:-open}"
+    ;;
+  kb)
+    shift
+    "$BASE/holy_kb.sh" "$@"
     ;;
   artifact)
     shift
