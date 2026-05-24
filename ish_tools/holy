@@ -6,7 +6,8 @@ usage() {
   echo "holy-cluster command tool"
   echo ""
   echo "Usage:"
-  echo "  holy status"
+  echo "  holy collect
+  holy status"
   echo "  holy display \"message\""
   echo "  holy face archive"
   echo "  holy face cortex"
@@ -103,6 +104,9 @@ render_cmd() {
 }
 
 case "$1" in
+  collect)
+    "$BASE/holy_collect.sh"
+    ;;
   status)
     status_cmd
     ;;
