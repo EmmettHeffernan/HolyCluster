@@ -1,0 +1,9 @@
+HOLY-CLUSTER TITLE REPORT
+text=SYSTEM ONLINE
+frames=48
+wall_seconds=1
+archive_frames=0-11
+cortex_frames=12-47
+output=/Users/emmettheffernan/holy-cluster/title_renders/title_20260524_100041
+node=ARCHIVE-09 frames=0-11 seconds=0.002
+node=CORTEX-11 frames=12-47 seconds=0.011

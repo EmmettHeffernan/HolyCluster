@@ -8,6 +8,13 @@ usage() {
   echo "Usage:"
   echo "  holy checkpoint "message"\n  holy open title|render|face|compute|folder
   holy collect
+  holy job compute|render|title|doctor
+  holy q-admin stats|cancel|retry|clean
+  holy q init|submit|list|run-next|show|log
+  holy q-run-all
+  holy q-start
+  holy q-stop
+  holy q-worker
   holy status"
   echo "  holy display \"message\""
   echo "  holy face archive"
@@ -115,6 +122,30 @@ case "$1" in
     ;;
   collect)
     "$BASE/holy_collect.sh"
+    ;;
+  q-run-all)
+    ssh cortex11 "cd ~/holy-cluster && ./holy_queue_worker.sh run-all"
+    ;;
+  q-start)
+    ssh cortex11 "cd ~/holy-cluster && ./holy_queue_worker.sh start"
+    ;;
+  q-stop)
+    ssh cortex11 "cd ~/holy-cluster && ./holy_queue_worker.sh stop"
+    ;;
+  q-worker)
+    ssh cortex11 "cd ~/holy-cluster && ./holy_queue_worker.sh status && ./holy_queue_worker.sh log"
+    ;;
+  job)
+    shift
+    "$BASE/holy_job.sh" "$@"
+    ;;
+  q-admin)
+    shift
+    ssh cortex11 "cd ~/holy-cluster && /usr/local/bin/python3 holy_queue_admin.py $*"
+    ;;
+  q|queue)
+    shift
+    ssh cortex11 "cd ~/holy-cluster && /usr/local/bin/python3 holy_queue.py $*"
     ;;
   status)
     status_cmd

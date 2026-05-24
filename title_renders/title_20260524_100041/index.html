@@ -1,0 +1,10 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Holy Title</title>
+<style>
+body{margin:0;background:#02060a;color:#00ff88;font-family:monospace;text-align:center}
+img{width:100vw;height:auto}
+</style></head><body>
+<img id="f" src="frames/frame_0000.svg">
+<script>
+let n=48,i=0;function p(x){return String(x).padStart(4,"0")}
+setInterval(()=>{f.src="frames/frame_"+p(i)+".svg";i=(i+1)%n},70)
+</script></body></html>
