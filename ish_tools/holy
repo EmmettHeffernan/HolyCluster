@@ -8,7 +8,7 @@ usage() {
   echo "Usage:"
   echo "  holy checkpoint "message"\n  holy open title|render|face|compute|folder
   holy collect
-  holy artifact init|add|list|latest|show|open
+  holy dashboard [open|start|stop|log]\n  holy artifact init|add|list|latest|show|open
   holy job compute|render|title|doctor
   holy q-admin stats|cancel|retry|clean
   holy q init|submit|list|run-next|show|log
@@ -135,6 +135,10 @@ case "$1" in
     ;;
   q-worker)
     ssh cortex11 "cd ~/holy-cluster && ./holy_queue_worker.sh status && ./holy_queue_worker.sh log"
+    ;;
+  dashboard)
+    shift
+    "$BASE/holy_dashboard.sh" "${1:-open}"
     ;;
   artifact)
     shift
