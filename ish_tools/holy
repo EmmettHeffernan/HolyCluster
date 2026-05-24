@@ -6,7 +6,7 @@ usage() {
   echo "holy-cluster command tool"
   echo ""
   echo "Usage:"
-  echo "  holy open title|render|face|compute|folder
+  echo "  holy checkpoint "message"\n  holy open title|render|face|compute|folder
   holy collect
   holy status"
   echo "  holy display \"message\""
@@ -105,6 +105,10 @@ render_cmd() {
 }
 
 case "$1" in
+  checkpoint)
+    shift
+    "$BASE/holy_checkpoint.sh" "$@"
+    ;;
   open)
     shift
     "$BASE/holy_open.sh" "$1"
