@@ -1,0 +1,33 @@
+html,body{margin:0;background:#02060a;color:#00ff88;font-family:monospace;overflow:hidden}
+#screen{width:100vw;height:100vh;position:relative;background:radial-gradient(circle at center,#06231e 0,#02060a 55%,#000 100%)}
+#screen:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0,rgba(255,255,255,.04) 1px,transparent 2px,transparent 7px);pointer-events:none}
+#screen:after{content:"";position:absolute;inset:18px;border:2px solid #00ff88;box-shadow:0 0 24px #00ff88 inset,0 0 18px #00ff88;pointer-events:none}
+.header{position:absolute;top:28px;left:42px;right:42px;display:flex;justify-content:space-between;font-size:24px;text-shadow:0 0 12px #00ff88}
+.panel{position:absolute;border:1px solid #00ff88;background:rgba(0,20,18,.7);box-shadow:0 0 12px rgba(0,255,136,.4);padding:18px}
+.left{left:42px;top:110px;width:250px;height:330px}
+.right{right:42px;top:110px;width:250px;height:330px}
+.label{font-size:18px;color:#9ff;margin-bottom:14px}
+.big{font-size:28px;color:#00ff88}
+.small{font-size:14px;color:#9ff;line-height:1.7}
+.warn{color:#ffcc66}
+.entity{position:absolute;left:50%;top:49%;width:430px;height:520px;transform:translate(-50%,-50%);filter:drop-shadow(0 0 25px #00f5ff)}
+.face{position:absolute;inset:0;border-radius:48%;background:radial-gradient(ellipse at center,rgba(0,245,255,.32),rgba(0,255,136,.10) 45%,rgba(0,0,0,0) 72%);overflow:hidden;animation:breathe 5s infinite ease-in-out}
+.face img{width:100%;height:100%;object-fit:cover;opacity:.82;mix-blend-mode:screen;filter:contrast(1.3) brightness(.85) saturate(1.2)}
+.face:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 42% 42%,#00f5ff 0 2%,transparent 4%),radial-gradient(circle at 58% 42%,#00f5ff 0 2%,transparent 4%);filter:blur(1px);opacity:.9}
+.face:after{content:"";position:absolute;left:50%;top:8%;width:3px;height:45%;background:#00f5ff;box-shadow:0 0 18px #00f5ff}
+.ring{position:absolute;inset:20px;border:1px solid #00ff88;border-radius:50%;animation:spin 18s linear infinite;opacity:.7}
+.ring.two{inset:45px;border-color:#00f5ff;animation-duration:11s;animation-direction:reverse}
+.forehead{position:absolute;left:50%;top:10%;width:24px;height:24px;border-radius:50%;background:#00ff88;transform:translateX(-50%);box-shadow:0 0 30px #00ff88;animation:pulse 2s infinite}
+.quote{position:absolute;bottom:72px;left:50%;transform:translateX(-50%);font-size:18px;color:#00ff88;text-align:center;text-shadow:0 0 10px #00ff88}
+.wave{position:absolute;left:60px;right:60px;bottom:62px;height:80px;border-top:1px solid #00ff88;color:#00f5ff;font-size:15px;padding-top:12px}
+.bar{height:12px;background:linear-gradient(90deg,#00ff88 var(--v),rgba(0,255,136,.13) var(--v));border:1px solid #00ff88;margin:12px 0}
+.archive .entity{transform:translate(-52%,-50%)}
+.cortex .entity{transform:translate(-48%,-50%)}
+.archive .face{filter:hue-rotate(35deg)}
+.cortex .face{filter:hue-rotate(175deg)}
+.glitch .entity{animation:glitch .42s linear}
+.glitch .forehead{background:#ffcc66;box-shadow:0 0 35px #ffcc66}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.78}50%{transform:scale(1.025);opacity:1}}
+@keyframes pulse{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.45)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes glitch{0%{filter:drop-shadow(8px 0 #00f5ff)}35%{filter:drop-shadow(-8px 0 #ffcc66)}70%{filter:drop-shadow(5px 0 #00ff88)}100%{filter:drop-shadow(0 0 25px #00f5ff)}}

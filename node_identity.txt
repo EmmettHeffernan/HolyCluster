@@ -1,0 +1,4 @@
+NODE_NAME=CORTEX-11
+ROLE=CORTEX
+PROJECT=holy-cluster
+PURPOSE=controller_planning_generation_orchestration

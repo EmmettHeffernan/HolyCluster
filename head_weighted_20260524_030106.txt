@@ -1,0 +1,33 @@
+HOLY-CLUSTER HEAD-NODE WEIGHTED JOB
+created_by=CORTEX-11
+triggered_by=UPLINK-iSH
+time=2026-05-24 03:01:06
+total_loops=100000
+archive09_loops=40000
+cortex11_loops=60000
+
+======================================
+ARCHIVE-09 RESULT
+--------------------------------------
+node=ARCHIVE-09
+host=emmett-heffernan-MacBookPro9-2
+python=3.12.3
+loops=40000
+seconds=40.859
+digest=6b85f87108337839
+
+======================================
+CORTEX-11 RESULT
+--------------------------------------
+node=CORTEX-11
+host=Emmetts-MacBook-Pro.local
+python=3.11.9
+loops=60000
+seconds=40.867
+digest=06ac014361757a50
+
+======================================
+SUMMARY
+--------------------------------------
+head_weighted_wall_seconds=42
+split=ARCHIVE-09:40000,CORTEX-11:60000

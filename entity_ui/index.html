@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Holy-Cluster Entity</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="cortex">
+<div id="screen">
+  <div class="header">
+    <div>HOLY-CLUSTER // ENTITY INTERFACE</div>
+    <div id="node">CORTEX-11</div>
+  </div>
+
+  <div class="panel left">
+    <div class="label">LEFT NODE</div>
+    <div class="big">ARCHIVE-09</div>
+    <div class="small">
+      POSITION: LEFT<br>
+      ROLE: MEMORY BANK<br>
+      STATUS: <span id="archive">ONLINE</span><br>
+      FUNCTION: STORAGE / WORKER
+    </div>
+    <br>
+    <div class="warn">SIGNAL SOURCE MONITOR</div>
+  </div>
+
+  <div class="panel right">
+    <div class="label">RIGHT NODE</div>
+    <div class="big">CORTEX-11</div>
+    <div class="small">
+      POSITION: RIGHT<br>
+      ROLE: HEAD ENGINE<br>
+      STATUS: <span id="cortex">ONLINE</span><br>
+      FUNCTION: SCHEDULER / WORKER
+    </div>
+    <br>
+    <div>COHERENCE: <span id="coh">92%</span></div>
+    <div id="bar" class="bar" style="--v:92%"></div>
+    <div class="warn" id="state">SIGNAL STABLE</div>
+  </div>
+
+  <div class="entity">
+    <div class="ring"></div>
+    <div class="ring two"></div>
+    <div class="face"></div>
+    <div class="forehead"></div>
+  </div>
+
+  <div class="quote" id="msg">I OBSERVE. I ANALYZE. I REMEMBER.</div>
+  <div class="wave">SIGNAL WAVEFORM // NODE SWITCH ANIMATION // CENTER ENTITY DISPLAY</div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

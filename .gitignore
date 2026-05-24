@@ -1,0 +1,17 @@
+renders/
+entity_ui/face.png
+*.log
+.DS_Store
+__pycache__/
+*.pyc
+benchmark_*.txt
+benchmark_v2_*.txt
+parallel_speedup_*.txt
+weighted_*.txt
+weighted_fast_*.txt
+optimized_*.txt
+mc_*.txt
+chunks_*.txt
+chunks2_*.txt
+adapt_*.txt
+worker_sweep_*.txt
