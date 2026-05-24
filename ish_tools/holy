@@ -17,7 +17,7 @@ usage() {
   holy q-start
   holy q-stop
   holy q-worker
-  holy net lan|remote\n  holy status"
+  holy gateway\n  holy net lan|remote\n  holy status"
   echo "  holy display \"message\""
   echo "  holy face archive"
   echo "  holy face cortex"
@@ -164,6 +164,9 @@ case "$1" in
   q|queue)
     shift
     ssh cortex11 "cd ~/holy-cluster && /usr/local/bin/python3 holy_queue.py $*"
+    ;;
+  gateway)
+    "$BASE/holy_gateway.sh"
     ;;
   net)
     shift
