@@ -46,5 +46,6 @@ output=$D
 ARCHIVE_RESULT=$(cat /tmp/a_render.txt)
 CORTEX_RESULT=$(cat /tmp/c_render.txt)
 EOF
+/usr/local/bin/python3 "$HOME/holy-cluster/holy_artifact.py" add render "$D/index.html" "entity render frames=$N wall=${WALL}s" 2>/dev/null || true
 cat "$D/report.txt"
 echo "open_file=$D/index.html"

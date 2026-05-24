@@ -61,5 +61,6 @@ $(cat /tmp/title_archive.txt)
 $(cat /tmp/title_cortex.txt)
 EOF
 
+/usr/local/bin/python3 "$HOME/holy-cluster/holy_artifact.py" add title "$D/index.html" "title render text=$TEXT frames=$N wall=${WALL}s" 2>/dev/null || true
 cat "$D/report.txt"
 echo "open_file=$D/index.html"

@@ -89,5 +89,6 @@ echo "wall_seconds=$WALL"
 echo "split=ARCHIVE-09:$ARCHIVE_LOOPS,CORTEX-11:$CORTEX_LOOPS"
 } > "$OUT"
 
+/usr/local/bin/python3 "$HOME/holy-cluster/holy_artifact.py" add compute "$OUT" "optimized compute total=$TOTAL wall=${WALL}s" 2>/dev/null || true
 cat "$OUT"
 echo "Saved: $OUT"
