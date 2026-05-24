@@ -1,0 +1,144 @@
+#!/bin/sh
+
+BASE="$HOME/holy-cluster"
+
+usage() {
+  echo "holy-cluster command tool"
+  echo ""
+  echo "Usage:"
+  echo "  holy status"
+  echo "  holy display \"message\""
+  echo "  holy face archive"
+  echo "  holy face cortex"
+  echo "  holy compute [loops]"
+  echo "  holy render [frames]"
+  echo "  holy open-face"
+  echo "  holy help"
+}
+
+status_cmd() {
+  echo "======================================"
+  echo "          HOLY-CLUSTER STATUS"
+  echo "======================================"
+  echo "[UPLINK-iSH]"
+  echo "HOST=$(hostname)"
+  echo "USER=$(whoami)"
+  echo "PYTHON=$(python3 --version 2>&1)"
+  echo ""
+
+  echo "[ARCHIVE-09]"
+  ssh archive09 'echo HOST=$(hostname); echo USER=$(whoami); echo PYTHON=$(python3 --version 2>&1); uptime'
+  echo ""
+
+  echo "[CORTEX-11]"
+  ssh cortex11 'echo HOST=$(hostname); echo USER=$(whoami); echo PYTHON=$(/usr/local/bin/python3 --version 2>/dev/null || python3 --version 2>&1); uptime'
+  echo "======================================"
+}
+
+display_cmd() {
+  MSG="$*"
+  [ -z "$MSG" ] && MSG="HOLY-CLUSTER SIGNAL"
+
+  printf '%s\n' "HOLY-CLUSTER SIGNAL
+
+SOURCE: UPLINK-iSH
+TARGET: ARCHIVE-09
+MESSAGE: $MSG" | ssh archive09 'cat > ~/holy-cluster/terminal_feed.txt'
+
+  printf '%s\n' "HOLY-CLUSTER SIGNAL
+
+SOURCE: UPLINK-iSH
+TARGET: CORTEX-11
+MESSAGE: $MSG" | ssh cortex11 'cat > ~/holy-cluster/terminal_feed.txt'
+
+  echo "Signal delivered."
+}
+
+face_cmd() {
+  MODE="$1"
+
+  if [ "$MODE" = "archive" ]; then
+    NODE="ARCHIVE-09"
+    STATE="MEMORY ACCESS"
+    COH=81
+    MSG="ARCHIVE MEMORY FORMING. LEFT NODE ACTIVE."
+  else
+    NODE="CORTEX-11"
+    STATE="EXECUTION ENGINE"
+    COH=96
+    MSG="CORTEX EXECUTION ACTIVE. RIGHT NODE DOMINANT."
+  fi
+
+  ssh cortex11 "mkdir -p ~/holy-cluster/entity_ui && cat > ~/holy-cluster/entity_ui/state.json <<EOF
+{
+  \"active_node\": \"$NODE\",
+  \"state\": \"$STATE\",
+  \"coherence\": $COH,
+  \"message\": \"$MSG\",
+  \"archive\": \"ONLINE\",
+  \"cortex\": \"ONLINE\"
+}
+EOF"
+
+  echo "Entity face switched to $NODE."
+}
+
+open_face_cmd() {
+  ssh cortex11 'cd ~/holy-cluster/entity_ui && python3 -m http.server 8788 >/tmp/holy_entity_server.log 2>&1 &'
+  ssh cortex11 'open http://localhost:8788'
+  echo "Entity UI opened on CORTEX-11."
+}
+
+compute_cmd() {
+  LOOPS="${1:-240000}"
+  echo "Running optimized compute job with $LOOPS loops..."
+  ssh cortex11 "cd ~/holy-cluster && ./optimized_head.sh $LOOPS"
+}
+
+render_cmd() {
+  FRAMES="${1:-96}"
+  echo "Running visual render with $FRAMES frames..."
+  ssh cortex11 "cd ~/holy-cluster && ./render_mini.sh $FRAMES"
+  ssh cortex11 'open "$(ls -td ~/holy-cluster/renders/mini_*/index.html | head -1)"'
+}
+
+case "$1" in
+  status)
+    status_cmd
+    ;;
+  display)
+    shift
+    display_cmd "$@"
+    ;;
+  face)
+    shift
+    face_cmd "$1"
+    ;;
+  open-face)
+    open_face_cmd
+    ;;
+  compute)
+    shift
+    compute_cmd "$1"
+    ;;
+  title)
+    shift
+    "$BASE/holy_title.sh" "$1" "${2:-96}"
+    ;;
+  render)
+    shift
+    render_cmd "$1"
+    ;;
+  doctor)
+    "$BASE/holy_doctor.sh"
+    ;;
+  help|"")
+    usage
+    ;;
+  *)
+    echo "Unknown command: $1"
+    echo ""
+    usage
+    exit 1
+    ;;
+esac

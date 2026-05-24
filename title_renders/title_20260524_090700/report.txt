@@ -1,0 +1,9 @@
+HOLY-CLUSTER TITLE REPORT
+text=THE NETWORK IS AWAKE
+frames=96
+wall_seconds=2
+archive_frames=0-23
+cortex_frames=24-95
+output=/Users/emmettheffernan/holy-cluster/title_renders/title_20260524_090700
+node=ARCHIVE-09 frames=0-23 seconds=0.004
+node=CORTEX-11 frames=24-95 seconds=0.023
